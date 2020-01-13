@@ -35,12 +35,3 @@ resource "azurerm_storage_container" "example" {
 //    key                  = "prod.terraform.tfstate"
 //  }
 //}
-
-//terraform {
-//  backend "azurerm" {
-//    resource_group_name  = "ojas-test"
-//    storage_account_name = "storageaccountsiftertf"
-//    container_name       = "storagecontainersiftertf"
-//    key                  = "prod.terraform.tfstate"
-//  }
-//}
