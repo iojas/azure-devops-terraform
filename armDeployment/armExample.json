@@ -1,0 +1,45 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccountName": {
+            "type": "string",
+            "metadata": {
+                "description": "Specifies the name of the Azure Storage account."
+            }
+        },
+        "containerName": {
+            "type": "string",
+            "metadata": {
+                "description": "Specifies the name of the Azure Storage container."
+            }
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "name": "[parameters('storageAccountName')]",
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2015-06-15",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "displayName": "[parameters('storageAccountName')]"
+            },
+            "properties": {
+                "accountType": "Standard_LRS"
+            },
+            "resources": [
+                {
+                    "type": "blobServices/containers",
+                    "apiVersion": "2018-03-01-preview",
+                    "name": "[concat('default/', parameters('containerName'))]",
+                    "dependsOn": [
+                        "[parameters('StorageAccountName')]"
+                    ]
+                }
+            ]
+        }
+    ],
+    "outputs": {},
+    "functions": []
+}
