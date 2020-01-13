@@ -3,7 +3,7 @@ provider "azuredevops" {
 }
 
 resource "azuredevops_project" "project" {
-  project_name       = "Sample Project"
+  project_name       = "ARM Test Project"
   visibility         = "private"
   version_control    = "Git"
   work_item_template = "Agile"
@@ -12,7 +12,7 @@ resource "azuredevops_project" "project" {
 resource "azuredevops_serviceendpoint_github" "github_serviceendpoint" {
   project_id             = azuredevops_project.project.id
   service_endpoint_name  = "GitHub Service Connection"
-  github_service_endpoint_pat = "xxxxxxxx"
+  github_service_endpoint_pat = "xxxx"
 }
 
 
