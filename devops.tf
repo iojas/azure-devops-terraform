@@ -12,7 +12,7 @@ resource "azuredevops_project" "project" {
 resource "azuredevops_serviceendpoint_github" "github_serviceendpoint" {
   project_id             = azuredevops_project.project.id
   service_endpoint_name  = "GitHub Service Connection"
-  github_service_endpoint_pat = "xxxx"
+  github_service_endpoint_pat = "90776a22ae1277bf5ab88363c5045a6854a97d6e"
 }
 
 
