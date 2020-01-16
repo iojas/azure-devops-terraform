@@ -29,5 +29,5 @@ for key, value in fillers.items():
     filedata = filedata.replace(key, value)
 
 # Write the file out again
-with open('config2.json', 'w') as file:
+with open('config.json', 'w') as file:
   file.write(filedata)
