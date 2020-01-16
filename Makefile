@@ -4,6 +4,8 @@ ARMSCRIPTPATH:=armDeployment
 STORAGE_ACCOUNT_NAME:=armstoragetestsifter
 CONTAINER_NAME:=armcontainertestsifter
 
+STORAGE_CONTAINER:=armstoragecontainer
+
 DEPLOYMENT_NAME:=TestDeployment
 
 TF_BACKEND_PATH:=terraform-backend
@@ -29,18 +31,18 @@ create-deployment:
 		--name $(DEPLOYMENT_NAME)  \
 		--resource-group "$(RESOURCEGROUP)" \
 		--template-file armExample.json \
-		--parameters storageAccountName='$(STORAGE_ACCOUNT_NAME)' containerName='$(CONTAINER_NAME)'
+		--parameters storageAccountName='$(STORAGE_ACCOUNT_NAME)' containerName='$(STORAGE_CONTAINER)'
 
 # Once storage account and container is set, We can leverage them to set as a backend for Terraform scripts
 set-terraform-backend:
 	cd $(TF_BACKEND_PATH) && \
-	python backendCreator.py $(RESOURCEGROUP) $(STORAGE_ACCOUNT_NAME) $(CONTAINER_NAME) $(STORAGE_KEY) && \
+	python backendCreator.py $(RESOURCEGROUP) $(STORAGE_ACCOUNT_NAME) $(STORAGE_CONTAINER) $(STORAGE_KEY) && \
 	terraform init && \
 	terraform apply -auto-approve 
 
 # Now that terraform backend has been set we can go ahead and run rest of terraform deployment.
 terraform-deploy:
-	terraform apply -var resource_group_name=$(RESOURCEGROUP) -var storage_account_name=$(STORAGE_ACCOUNT_NAME) -auto-approve 
+	terraform apply -var resource_group_name=$(RESOURCEGROUP) -var storage_account_name=$(STORAGE_ACCOUNT_NAME) -var container_name=$(CONTAINER_NAME) -auto-approve 
 
 create-service-principle:
 	@echo creating service principle and assigning roles
@@ -57,6 +59,6 @@ create-infrastructure: create-resource-group create-deployment set-terraform-bac
 	echo Created infrastructure ...
 
 delete-deployment:
-	terraform destroy -var resource_group_name=$(RESOURCEGROUP) -var storage_account_name=$(STORAGE_ACCOUNT_NAME)  -auto-approve 
+	terraform destroy -var resource_group_name=$(RESOURCEGROUP) -var storage_account_name=$(STORAGE_ACCOUNT_NAME) -var container_name=$(CONTAINER_NAME)  -auto-approve 
 	az group delete --name $(RESOURCEGROUP) --yes
 

@@ -27,9 +27,3 @@ resource "azurerm_container_registry" "acr" {
   admin_enabled            = false
   georeplication_locations = ["East US", "West Europe"]
 }
-
-resource "azurerm_storage_container" "example" {
-  name                  = "storagecontainersiftertf"
-  storage_account_name  = data.azurerm_storage_account.example.name
-  container_access_type = "private"
-}
