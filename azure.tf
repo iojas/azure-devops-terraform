@@ -6,6 +6,10 @@ variable "storage_account_name" {
   type = string
 }
 
+variable "container_name" {
+  type = string
+}
+
 data "azurerm_resource_group" "rg" {
   name = var.resource_group_name
 }
@@ -16,7 +20,7 @@ data "azurerm_storage_account" "example" {
 }
 
 resource "azurerm_container_registry" "acr" {
-  name                     = "armcontainertestsifter"
+  name                     = var.container_name
   resource_group_name      = data.azurerm_resource_group.rg.name
   location                 = data.azurerm_resource_group.rg.location
   sku                      = "Premium"
