@@ -32,7 +32,7 @@ ACR_REGISTRY_ID=$(az acr show --name $ACR_NAME --query id --output tsv)
 # owner:       push, pull, and assign roles
 az role assignment create --assignee $SP_APP_ID --scope $ACR_REGISTRY_ID --role owner
 
-
+export SP_APP_ID=$SP_APP_ID
 
 
 

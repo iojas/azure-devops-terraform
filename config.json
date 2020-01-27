@@ -6,7 +6,7 @@
             "loginServer":"armcontainertestsifter.azurecr.io",
             "role":"8311e382-0749-4cb8-b61a-304f252e45ec",
             "scope":"/subscriptions/11ad98ac-56d8-4d49-af61-8eb30077771b/resourceGroups/CLIGroupForArm/providers/Microsoft.ContainerRegistry/registries/armcontainertestsifter",
-            "servicePrincipalId":"xxxx",
+            "servicePrincipalId":"109cafcf-e31d-4188-b23e-5084f1fe779e",
             "tenantId":"5a6794c3-49ae-4a77-83ab-74c59d6569e4"
         }
     },
@@ -19,7 +19,7 @@
         "registrytype":"ACR",
         "spnObjectId":"",
         "subscriptionId":"11ad98ac-56d8-4d49-af61-8eb30077771b",
-        "subscriptionName":"Test"
+        "subscriptionName":"Project"
     },
     "description":"asc",
     "groupScopeId":null,
@@ -31,8 +31,8 @@
             "description":"asc",
             "name":"acrserviceconnection",
             "projectReference":{
-                "id":"f11bec07-f489-44d4-a9cb-56354ecf7cc7",
-                "name":"ARM"
+                "id":"ARM",
+                "name":"Test"
             }
         }
     ],

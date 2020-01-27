@@ -10,6 +10,10 @@ variable "container_name" {
   type = string
 }
 
+module "backend" {
+  source = "./terraform-backend/"
+}
+
 data "azurerm_resource_group" "rg" {
   name = var.resource_group_name
 }

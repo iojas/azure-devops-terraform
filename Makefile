@@ -50,7 +50,7 @@ create-service-principle:
 
 create-service-connection:
 	@echo creating config file
-	python configCreator.py $(CONTAINER_NAME) $(SUBSCRIPTION_ID) $(RESOURCEGROUP) $(TENANT_ID) "xxxx" $(PROJECT_ID) $(PROJECT_NAME) $(SUBSCRIPTION_NAME)
+	python configCreator.py $(CONTAINER_NAME) $(SUBSCRIPTION_ID) $(RESOURCEGROUP) $(TENANT_ID) $(SP_APP_ID) $(PROJECT_ID) $(PROJECT_NAME) $(SUBSCRIPTION_NAME)
 	@echo now deploying
 	az devops service-endpoint create --service-endpoint-configuration config.json --organization ${AZDO_ORG_SERVICE_URL} --project "$(PROJECT_NAME)"
 

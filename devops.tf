@@ -13,8 +13,8 @@ resource "azuredevops_project" "project" {
 }
 
 resource "azuredevops_serviceendpoint_github" "github_serviceendpoint" {
-  project_id             = azuredevops_project.project.id
-  service_endpoint_name  = "GitHub Service Connection"
+  project_id                  = azuredevops_project.project.id
+  service_endpoint_name       = "GitHub Service Connection"
   github_service_endpoint_pat = var.GITHUB_TOKEN
 }
 
@@ -29,7 +29,7 @@ resource "azuredevops_build_definition" "nightly_build" {
     repo_type             = "GitHub"
     repo_name             = "iojas/django_ci_cd"
     branch_name           = "master"
-    yml_path              = "samplebuild.yml"
+    yml_path              = "azure-pipelines.yml"
     service_connection_id = azuredevops_serviceendpoint_github.github_serviceendpoint.id
   }
 }
