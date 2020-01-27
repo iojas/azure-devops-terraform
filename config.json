@@ -6,7 +6,7 @@
             "loginServer":"armcontainertestsifter.azurecr.io",
             "role":"8311e382-0749-4cb8-b61a-304f252e45ec",
             "scope":"/subscriptions/11ad98ac-56d8-4d49-af61-8eb30077771b/resourceGroups/CLIGroupForArm/providers/Microsoft.ContainerRegistry/registries/armcontainertestsifter",
-            "servicePrincipalId":"0f609c2e-43ff-4daa-b378-88803f36643f",
+            "servicePrincipalId":"a0f2c5a2-05be-4750-bac9-0928865fc028",
             "tenantId":"5a6794c3-49ae-4a77-83ab-74c59d6569e4"
         }
     },
