@@ -36,9 +36,9 @@ create-deployment:
 # Once storage account and container is set, We can leverage them to set as a backend for Terraform scripts
 set-terraform-backend:
 	cd $(TF_BACKEND_PATH) && \
-	python backendCreator.py $(RESOURCEGROUP) $(STORAGE_ACCOUNT_NAME) $(STORAGE_CONTAINER) $(STORAGE_KEY) && \
-	terraform init && \
-	terraform apply -auto-approve 
+	python backendCreator.py $(RESOURCEGROUP) $(STORAGE_ACCOUNT_NAME) $(STORAGE_CONTAINER) $(STORAGE_KEY)
+	# terraform init && \
+	# terraform apply -auto-approve 
 
 # Now that terraform backend has been set we can go ahead and run rest of terraform deployment.
 terraform-deploy:
