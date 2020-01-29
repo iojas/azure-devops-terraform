@@ -2,6 +2,9 @@ variable "location" {
   type = string
 }
 
+variable "POSTGRES_USERNAME" {}
+variable "POSTGRES_PASSWORD" {}
+
 resource "azurerm_postgresql_server" "example" {
   name                = "postgresql-server-2"
   location            = var.location
@@ -16,8 +19,8 @@ resource "azurerm_postgresql_server" "example" {
     auto_grow             = "Enabled"
   }
 
-  administrator_login          = "postgresadmin"
-  administrator_login_password = "P@$sVv0R1D"
+  administrator_login          = var.POSTGRES_USERNAME
+  administrator_login_password = var.POSTGRES_PASSWORD
   version                      = "9.5"
   ssl_enforcement              = "Enabled"
 }
