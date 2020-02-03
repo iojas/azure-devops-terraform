@@ -54,8 +54,12 @@ create-service-connection:
 	@echo now deploying
 	az devops service-endpoint create --service-endpoint-configuration config.json --organization ${AZDO_ORG_SERVICE_URL} --project "$(PROJECT_NAME)"
 
+deploy-elasticsearch:
+	az aks get-credentials --resource-group kuberesources --name aks-cluster2 && \
+	kubectl apply -f eskubernetes/
+
 # runs different make targets in sequence.
-create-infrastructure: create-resource-group create-deployment set-terraform-backend terraform-deploy create-service-principle create-service-connection
+create-infrastructure: create-resource-group create-deployment set-terraform-backend terraform-deploy create-service-principle create-service-connection deploy-elasticsearch
 	echo Created infrastructure ...
 
 delete-deployment:
