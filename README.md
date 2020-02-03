@@ -30,6 +30,13 @@ To run all above steps there is a wrapping steps whih internally runs above task
 ```create-infrastructure```
 
 
+### Making Deploy Pipeline work
+
+To make the deploy pipeline work you have to configure three things (one timer setup). 
+1. Enable continuous integration trigger 
+2. add resources to environment. make sure name matches to what is specified in azure-pipelines.yaml. (currently only kubernetes.)
+3. authorize resources when asked for.
+
 ### deleting the deployment
 
 first you have to ask terraform to undo its changes and then deleting the whole resource group does the work. changing the order of these will crash terraform script as resources created by terraform are deleted without its knowledge. 

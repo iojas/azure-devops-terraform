@@ -58,11 +58,15 @@ deploy-elasticsearch:
 	az aks get-credentials --resource-group kuberesources --name aks-cluster2 && \
 	kubectl apply -f eskubernetes/
 
+deploy-redis:
+	az aks get-credentials --resource-group kuberesources --name aks-cluster2 && \
+	kubectl apply -f redis/
+
 # runs different make targets in sequence.
-create-infrastructure: create-resource-group create-deployment set-terraform-backend terraform-deploy create-service-principle create-service-connection deploy-elasticsearch
+create-infrastructure: create-resource-group create-deployment set-terraform-backend terraform-deploy create-service-principle create-service-connection deploy-elasticsearch deploy-redis
 	echo Created infrastructure ...
 
 delete-deployment:
-	terraform destroy -var resource_group_name=$(RESOURCEGROUP) -var storage_account_name=$(STORAGE_ACCOUNT_NAME) -var container_name=$(CONTAINER_NAME)  -auto-approve 
+	terraform destroy -var resource_group_name=$(RESOURCEGROUP) -var storage_account_name=$(STORAGE_ACCOUNT_NAME) -var container_name=$(CONTAINER_NAME) -auto-approve 
 	az group delete --name $(RESOURCEGROUP) --yes
 
