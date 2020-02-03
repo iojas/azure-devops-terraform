@@ -42,7 +42,7 @@ set-terraform-backend:
 
 # Now that terraform backend has been set we can go ahead and run rest of terraform deployment.
 terraform-deploy:
-	terraform apply -var resource_group_name=$(RESOURCEGROUP) -var storage_account_name=$(STORAGE_ACCOUNT_NAME) -var container_name=$(CONTAINER_NAME) -auto-approve 
+	terraform apply -var resource_group_name=$(RESOURCEGROUP) -var storage_account_name=$(STORAGE_ACCOUNT_NAME) -var container_name=$(CONTAINER_NAME) -var location="$(LOCATION)" -auto-approve 
 
 create-service-principle:
 	@echo creating service principle and assigning roles
