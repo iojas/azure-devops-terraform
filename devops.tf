@@ -27,7 +27,7 @@ resource "azuredevops_build_definition" "nightly_build" {
 
   repository {
     repo_type             = "GitHub"
-    repo_name             = "egen/azure-cicd"
+    repo_name             = "iojas/django_ci_cd"
     branch_name           = "master"
     yml_path              = "azure-pipelines.yml"
     service_connection_id = azuredevops_serviceendpoint_github.github_serviceendpoint.id

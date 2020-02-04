@@ -4,9 +4,10 @@ variable "location" {
 
 variable "POSTGRES_USERNAME" {}
 variable "POSTGRES_PASSWORD" {}
+variable "DB_SERVER_NAME" {}
 
 resource "azurerm_postgresql_server" "example" {
-  name                = "postgresql-server-2"
+  name                = var.DB_SERVER_NAME
   location            = var.location
   resource_group_name = var.resource_group_name
 
@@ -23,4 +24,13 @@ resource "azurerm_postgresql_server" "example" {
   administrator_login_password = var.POSTGRES_PASSWORD
   version                      = "9.5"
   ssl_enforcement              = "Enabled"
+}
+
+
+resource "azurerm_postgresql_firewall_rule" "example" {
+  name                = "openrule"
+  resource_group_name = data.azurerm_resource_group.rg.name
+  server_name         = azurerm_postgresql_server.example.name
+  start_ip_address    = "0.0.0.0"
+  end_ip_address      = "255.255.255.255"
 }
